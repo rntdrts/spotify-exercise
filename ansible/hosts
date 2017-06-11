@@ -1,0 +1,2 @@
+[default]
+spotify-example ansible_connection=docker
