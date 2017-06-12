@@ -4,6 +4,7 @@ import {
     getMusicsSuccess,
     getMusicsFailure,
 } from '../actions/spotify';
+import { push } from 'react-router-redux';
 
 const fetchMusics = () => {
     return fetch('http://localhost:8080/musics', {
@@ -21,6 +22,7 @@ function* getMusics () {
         yield put(getMusicsSuccess(musics));
     } catch (e) {
         yield put(getMusicsFailure());
+        yield put(push('/auth/login'));
     }
 }
 

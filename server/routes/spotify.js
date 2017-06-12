@@ -1,12 +1,15 @@
 import Spotify from 'machinepack-spotify';
 import rp from 'request-promise';
+import moment from 'moment';
 
 import {SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET } from '../../config/index';
 
 const BASE_URL = 'https://api.spotify.com/v1/',
-    PLAYLIST_LIMIT = 4;
+    PLAYLIST_LIMIT = 4,
+    EXPIRED_TIME = 45;
 
-let ACCESS_TOKEN = null;
+let ACCESS_TOKEN = null,
+    TOKEN_EXP = moment().add(EXPIRED_TIME, 'm').unix();
 
 function getAccessToken(callback) {
     Spotify.getAccessToken({
@@ -38,11 +41,7 @@ const getPlaylistsByCategory = (category) => {
         json: true
     };
 
-    if (ACCESS_TOKEN) {
-        return rp(playListOptions);
-    } else {
-        getAccessToken(getPlaylistsByCategory());
-    }
+    return rp(playListOptions);
 };
 
 
@@ -62,7 +61,7 @@ const getTracksOnPlaylist = (playlist_id, user_id) => {
     return rp(tracksOptions);
 };
 
-const getRomanceMusics = (req, res) => {
+const romances = (req, res) => {
     let musics = [];
     getPlaylistsByCategory('romance').then((result) => {
         let index = 0;
@@ -74,11 +73,24 @@ const getRomanceMusics = (req, res) => {
                     res.json(musics);
             });
         });
-    }).catch((e) => res.status(401).send({ message: 'Invalid Access' }));
+    }).catch((e) => {
+        res.status(401).send({ message: 'Invalid Access' })
+    });
+};
+
+const getRomanceMusics = (req, res) => {
+    if (moment().unix() > TOKEN_EXP ) {
+        getAccessToken(() => {
+            romances(req, res);
+            TOKEN_EXP = moment().add(EXPIRED_TIME, 'm').unix();
+        });
+    } else {
+        romances(req, res);
+    }
 };
 
 
-
+getAccessToken();
 
 export {
     getAccessToken,

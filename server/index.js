@@ -4,8 +4,8 @@ import volleyball from 'volleyball';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
-import { signup, login, verifyAuth } from './routes/user';
-import { getAccessToken, getRomanceMusics, } from './routes/spotify';
+import { signup, login } from './routes/user';
+import { getRomanceMusics, } from './routes/spotify';
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -51,8 +51,6 @@ app.post('/auth/login', login);
 app.post('/auth/signup', signup);
 
 app.get('/musics', getRomanceMusics);
-
-getAccessToken();
 
 app.listen(port, function () {
     console.log("Rockin' out on port 8080 homie");
