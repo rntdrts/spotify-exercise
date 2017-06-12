@@ -3,7 +3,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import configureStore from './redux/store';
 import { Router, Route, hashHistory, IndexRoute } from 'react-router';
-import { App, Welcome, Spotify, Login, Signup } from './components';
+import { App, Spotify, Login, Signup } from './components';
 import RomanticContainer from './containers/RomanticContainer';
 import { push } from 'react-router-redux';
 import { syncHistoryWithStore } from 'react-router-redux';
@@ -37,7 +37,6 @@ export default (
                     <IndexRoute component={requireAuthentication(RomanticContainer)} />
                 </Route>
                 <Route path="/auth" component={App}>
-                    <IndexRoute component={Welcome} />
                     <Route path="signup" component={Signup} />
                     <Route path="login" component={Login} />
                 </Route>
