@@ -1,0 +1,93 @@
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans);
+@import './spotify';
+@import './auth';
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  margin: 0 15px;
+}
+
+h2, h3 {
+  text-transform: uppercase;
+}
+
+.content {
+  margin: auto;
+  width: 960px;
+}
+
+.romance-card {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 10px;
+  border-radius: 4px;
+  display: inline-block;
+  .romance-card-title {
+    position: absolute;
+    background: #e9e9e9;
+    width: 300px;
+    opacity: 0.6;
+    margin: 0 auto;
+    height: 70px;
+    text-align: center;
+    padding: 20px 5px;
+    top: 230px;
+    .artist, .name {
+      width: 280px;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 680px;
+    .modal-image {
+      display: block;
+    }
+    .modal-info {
+      display: block;
+      .artist-info, .music-info {
+        h3 {
+          display: inline-block;
+          margin: 10px;
+          &:first-of-type {
+            margin-top: 20px;
+          }
+        }
+        p { display: inline-block; margin: 10px;}
+      }
+    }
+  }
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    &:hover,
+    &:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+}

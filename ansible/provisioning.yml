@@ -1,0 +1,10 @@
+- hosts: spotify-example
+  connection: spotify-example
+  roles:
+    - Stouts.mongodb
+
+- hosts: 127.0.0.1
+  connection: local
+  tasks:
+    - name: commit
+      command: docker commit nodejs

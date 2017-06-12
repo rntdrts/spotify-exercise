@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+.logo {
+  margin: auto;
+  display: inline-block;
+  width: 100%;
+  &:visited {
+    color: #000;
+    text-decoration: none;
+  }
+  text-decoration: none;
+  h1.lovespot-logo {
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 240px;
+    padding-top: 20px;
+    font-size: 150px;
+    .love { display:inline; color: #ff5252; }
+  }
+}
+
+.lovespot {
+  position: relative;
+  width: 240px;
+  height: 240px;
+
+  &:before,
+  &:after {
+    position: absolute;
+    content: "";
+    left: 120px;
+    top: 30px;
+    width: 121px;
+    height: 179px;
+    background: black;
+    -moz-border-radius: 120px 120px 0 0;
+    border-radius: 240px 240px 0 0;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform-origin: 0 100%;
+    -moz-transform-origin: 0 100%;
+    -ms-transform-origin: 0 100%;
+    -o-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+  }
+
+  &:after {
+    left: 0;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transform-origin: 100% 100%;
+    -moz-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    -o-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+  }
+}
+
+
+.bar {
+  position: absolute;
+  width: 280px;
+  height: 135px;
+  border-radius: 50%;
+  z-index: 1;
+  border: 30px solid #FFF;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  transform: rotate(8deg) scale(0.7);
+}
+
+.bar-dark {
+  top: 34px;
+  left: -20px;
+}
+
+.bar-dark::before,
+.bar-dark::after {
+  background: #FFF;
+}
+
+.bar-med {
+  top: 63px;
+  left: -25px;
+  transform: rotate(8deg) scale(0.6);
+  border-top-color: #FFF;
+}
+
+.bar-med::before,
+.bar-med::after {
+  background: #FFF;
+}
+
+.bar-light {
+  top: 90px;
+  left: -30px;
+  transform: rotate(8deg) scale(0.5);
+  border-top-color: #FFF;
+}
+
+.bar-light::before,
+.bar-light::after {
+  background: #FFF;
+}
+
+.bar::before,
+.bar::after {
+  content: '';
+  position: absolute;
+  width: 31px;
+  height: 26px;
+  border-radius: 50%;
+}
+
+.bar::before {
+  top: -7px;
+  left: -6px;
+}
+
+.bar::after {
+  top: -7px;
+  right: -6px;
+}

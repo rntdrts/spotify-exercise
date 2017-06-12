@@ -1,0 +1,101 @@
+.auth {
+  width: 100%;
+  .auth-structure {
+    height: 400px;
+    .auth-right-side {
+      float: left;
+      background-color: #ff5252;
+      text-align: center;
+      width: 120px;
+      height: 100%;
+      display: inline-block;
+      a, span {
+        position: relative;
+        top: 43%;
+        color: #000000;
+        font-size: 30px;
+        text-decoration: none;
+      }
+      span {
+        display: inline-block;
+        color: #fefefe;
+      }
+    }
+    .auth-panel {
+      display: inline-block;
+      float: right;
+      width: calc(100% - 120px);
+      .auth-form {
+        padding: 20px;
+        top: 50%;
+        form {
+          label {
+            display: block;
+            font-size: 25px;
+            margin: 10px 0 0;
+          }
+
+          input[type="text"],
+          input[type="password"] {
+            display: block;
+            margin: 0 0 20px;
+            width: 100%;
+            font-family: "Open Sans", sans-serif;
+            font-size: 18px;
+            padding: 10px;
+            border: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            -webkit-border-radius: none;
+            -moz-border-radius: none;
+            -ms-border-radius: none;
+            -o-border-radius: none;
+            border-radius: none;
+            border-bottom: solid 2px #c9c9c9;
+            -webkit-transition: border 0.3s;
+            -moz-transition: border 0.3s;
+            -o-transition: border 0.3s;
+            transition: border 0.3s;
+            &:focus {
+              outline: none;
+              border-bottom: solid 2px #969696;
+            }
+          }
+          .btn {
+            width: 200px;
+            height: 60px;
+            margin: 40px 20px 20px;
+            &.btn-submit {
+              float: right;
+              box-sizing: border-box;
+              bottom: 0;
+              background: #FFF;
+              border: 5px solid #969696;
+              font-family: 'Source Sans Pro', sans-serif;
+              line-height: 50px;
+              font-size: 17pt;
+              text-align: center;
+              text-transform: uppercase;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.auth-logout {
+  width: 100%;
+  text-align: right;
+  padding: 10px;
+  font-size: 26px;
+  span {
+    color: #969696;
+    display: block;
+    cursor: pointer;
+  }
+}

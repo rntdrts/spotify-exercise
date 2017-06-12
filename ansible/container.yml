@@ -1,0 +1,14 @@
+- hosts: 127.0.0.1
+  connection: local
+  tasks:
+    - name: Docker container with Node Js
+      docker_container:
+        name: spotify-example
+        image: node:8.0.0
+        command: sleep infinity
+        state: started
+        keep_volumes: true
+        volumes:
+          - ../:/srv/spotify-example/current
+        ports:
+          - "8080:8080"
