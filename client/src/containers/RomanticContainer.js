@@ -38,7 +38,7 @@ class RomanticContainer extends Component {
 
     render () {
         const { musics, userName, selectedMusic } = this.props;
-        console.log(selectedMusic);
+
         return (
             <div>
                 <Modal music={selectedMusic} toggleModal={this.toggleModal} />
