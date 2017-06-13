@@ -50,7 +50,7 @@ app.use(morgan('dev'));
 app.post('/auth/login', login);
 app.post('/auth/signup', signup);
 
-app.get('/musics', getRomanceMusics);
+app.get('/musics/:offset', getRomanceMusics);
 
 app.listen(port, function () {
     console.log("Rockin' out on port 8080 homie");

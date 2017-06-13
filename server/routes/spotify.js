@@ -5,7 +5,7 @@ import moment from 'moment';
 import {SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET } from '../../config/index';
 
 const BASE_URL = 'https://api.spotify.com/v1/',
-    PLAYLIST_LIMIT = 4,
+    PLAYLIST_LIMIT = 1,
     EXPIRED_TIME = 45;
 
 let ACCESS_TOKEN = null,
@@ -28,11 +28,12 @@ const getAccessToken = (callback) => {
     });
 };
 
-const getPlaylistsByCategory = (category) => {
+const getPlaylistsByCategory = (category, offset) => {
     const playListOptions = {
         uri: BASE_URL + 'browse/categories/'+category+'/playlists',
         qs: {
             access_token: ACCESS_TOKEN,
+            offset: offset,
             limit: PLAYLIST_LIMIT
         },
         headers: {
@@ -62,20 +63,13 @@ const getTracksOnPlaylist = (playlist_id, user_id) => {
 };
 
 const romances = (req, res) => {
-    let musics = [];
-    getPlaylistsByCategory('romance').then((result) => {
-        let index = 0;
+    const { offset } = req.params;
+    getPlaylistsByCategory('romance', offset).then((result) => {
         result.playlists.items.forEach(playlist => {
-            getTracksOnPlaylist(playlist.id, playlist.owner.id).then(result => {
-                result.items.forEach(item => musics.push(item));
-                index++;
-                if (index === PLAYLIST_LIMIT)
-                    res.json(musics);
-            });
+            getTracksOnPlaylist(playlist.id, playlist.owner.id)
+                .then(result => res.json(result.items));
         });
-    }).catch((e) => {
-        res.status(401).send({ message: 'Invalid Access' })
-    });
+    }).catch((e) => res.status(401).send({ message: 'Invalid Access' }));
 };
 
 const getRomanceMusics = (req, res) => {
