@@ -12,10 +12,22 @@ class RomanticContainer extends Component {
         super(props);
         this.logout = this.logout.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
+        this.handleScroll =  this.handleScroll.bind(this);
     }
 
     componentDidMount () {
         this.getMusics();
+        window.addEventListener('scroll', this.handleScroll);
+    }
+
+    componentWillUnmount () {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll () {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+            this.getMusics();
+        }
     }
 
     toggleModal (index) {
@@ -27,7 +39,8 @@ class RomanticContainer extends Component {
     }
 
     getMusics () {
-        this.props.musicActions.getMusics();
+        if (!this.props.loading)
+            this.props.musicActions.getMusics(this.props.offset);
     }
 
     logout () {
@@ -37,7 +50,7 @@ class RomanticContainer extends Component {
     }
 
     render () {
-        const { musics, userName, selectedMusic } = this.props;
+        const { musics, userName, selectedMusic, loading } = this.props;
 
         return (
             <div>
@@ -48,6 +61,7 @@ class RomanticContainer extends Component {
                     userName={userName}
                     logout={this.logout}
                 />
+                { loading ? <div className="loading"/> : null}
             </div>
         );
     }
@@ -57,6 +71,8 @@ function mapStateToProps (state) {
     return {
         musics: state.getIn(['spotify', 'list'], Immutable.List()).toJS(),
         selectedMusic: state.getIn(['spotify', 'selectedMusic'], Immutable.List()).toJS(),
+        offset: state.getIn(['spotify', 'offset']),
+        loading: state.getIn(['spotify', 'loading']),
         userName: state.getIn(['auth', 'name'])
     }
 }

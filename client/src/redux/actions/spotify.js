@@ -5,16 +5,18 @@ import {
     SHOW_SELECTED_MUSIC
 } from '../constants/spotify';
 
-function getMusics() {
+function getMusics(offset) {
     return {
-        type: GET_MUSICS
+        type: GET_MUSICS,
+        offset
     };
 }
 
-function getMusicsSuccess(musics) {
+function getMusicsSuccess(musics, offset) {
     return {
         type: GET_MUSICS_SUCCESS,
-        musics
+        musics,
+        offset
     }
 }
 

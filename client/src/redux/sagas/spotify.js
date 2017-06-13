@@ -6,8 +6,8 @@ import {
 } from '../actions/spotify';
 import { push } from 'react-router-redux';
 
-const fetchMusics = () => {
-    return fetch('http://localhost:8080/musics', {
+const fetchMusics = (offset) => {
+    return fetch(`http://localhost:8080/musics/${offset}`, {
         headers: new Headers({
             'Content-Type': 'application/json',
             'x-access-token': localStorage.getItem('token')
@@ -16,10 +16,11 @@ const fetchMusics = () => {
         .then(response => response.json());
 };
 
-function* getMusics () {
+function* getMusics (action) {
+    const { offset } = action;
     try {
-        const musics = yield call(fetchMusics);
-        yield put(getMusicsSuccess(musics));
+        const musics = yield call(fetchMusics, offset);
+        yield put(getMusicsSuccess(musics, offset));
     } catch (e) {
         yield put(getMusicsFailure());
         yield put(push('/auth/login'));
