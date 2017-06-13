@@ -32,13 +32,7 @@ class RomanticContainer extends Component {
 
     logout () {
         this.props.authActions.logoutUser();
-        toastr.success(
-            'Romantic Spotify',
-            'Your are now logged out',
-            {
-                position: 'top-right'
-            }
-        );
+        toastr.success('LoveSpot', 'Your are now logged out!');
         localStorage.removeItem('token');
     }
 
