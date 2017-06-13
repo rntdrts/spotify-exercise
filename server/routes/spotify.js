@@ -51,7 +51,7 @@ const getTracksOnPlaylist = (playlist_id, user_id) => {
         uri: BASE_URL + 'users/'+user_id+'/playlists/'+playlist_id+'/tracks',
         qs: {
             access_token: ACCESS_TOKEN,
-            fields: 'items(track(name,href,external_urls).album)'
+            fields: 'items(track(name,href,uri,external_urls).album)'
         },
         headers: {
             'User-Agent': 'Request-Promise'
