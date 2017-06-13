@@ -34,7 +34,7 @@ h2, h3 {
     margin: 0 auto;
     height: 70px;
     text-align: center;
-    padding: 20px 5px;
+    padding: 18px 5px;
     top: 230px;
     .artist, .name {
       width: 280px;
@@ -91,4 +91,9 @@ h2, h3 {
       cursor: pointer;
     }
   }
+}
+
+.redux-toastr {
+  right: 25px;
+  top: 25px;
 }

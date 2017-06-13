@@ -11,7 +11,7 @@ const BASE_URL = 'https://api.spotify.com/v1/',
 let ACCESS_TOKEN = null,
     TOKEN_EXP = moment().add(EXPIRED_TIME, 'm').unix();
 
-function getAccessToken(callback) {
+const getAccessToken = (callback) => {
     Spotify.getAccessToken({
         clientId: SPOTIFY_CLIENT_ID,
         clientSecret: SPOTIFY_CLIENT_SECRET,
@@ -26,7 +26,7 @@ function getAccessToken(callback) {
             }
         },
     });
-}
+};
 
 const getPlaylistsByCategory = (category) => {
     const playListOptions = {
@@ -88,7 +88,6 @@ const getRomanceMusics = (req, res) => {
         romances(req, res);
     }
 };
-
 
 getAccessToken();
 

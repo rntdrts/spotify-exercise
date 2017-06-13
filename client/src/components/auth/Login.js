@@ -30,7 +30,7 @@ class Login extends PureComponent {
                                         type="text"
                                         className="form-control"
                                         component="input"
-                                        placeholder="Enter the name"
+                                        placeholder="Enter the e-mail"
                                     />
                                 </div>
                                 <div className="auth-form-group">

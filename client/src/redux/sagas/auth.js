@@ -35,8 +35,8 @@ function* loginUser (action) {
         const credentials = yield select(getForm, 'login');
         const result = yield call(sendCredentials, 'login', credentials.values);
         yield put(toastrActions.add({
-            type: 'success',
-            title: 'Logged with success!',
+            type: 'LoveSpot success',
+            title: 'You have successfully logged in!',
             message: result.message
         }));
         localStorage.setItem('token', result.token);
@@ -51,8 +51,8 @@ function* loginUser (action) {
         }
         yield put(loginUserFailure());
         yield put(toastrActions.add({
-            type: 'error',
-            title: 'Romantic login failed',
+            type: 'LoveSpot error',
+            title: 'Login failed!',
             message: message
         }));
     }
@@ -63,8 +63,8 @@ function* signupUser () {
         const credentials = yield select(getForm, 'signup');
         const result = yield call(sendCredentials, 'signup', credentials.values);
         yield put(toastrActions.add({
-            type: 'success',
-            title: 'Romantic signup',
+            type: 'LoveSpot success',
+            title: 'You have successfully registered and logged in!',
             message: result.message
         }));
         localStorage.setItem('token', result.token);
@@ -79,8 +79,8 @@ function* signupUser () {
         }
         yield put(signupUserFailure());
         yield put(toastrActions.add({
-            type: 'error',
-            title: 'Romantic signup failed',
+            type: 'LoveSpot error',
+            title: 'Registration failed!',
             message: message
         }));
     }

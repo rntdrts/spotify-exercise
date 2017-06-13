@@ -1,10 +1,11 @@
 .auth {
   width: 100%;
   .auth-structure {
+    position: relative;
     height: 400px;
     .auth-right-side {
       float: left;
-      background-color: #ff5252;
+      background-color: #ddd;
       text-align: center;
       width: 120px;
       height: 100%;
@@ -66,6 +67,9 @@
             }
           }
           .btn {
+            position: absolute;
+            bottom: 0;
+            right: 0;
             width: 200px;
             height: 60px;
             margin: 40px 20px 20px;

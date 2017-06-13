@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 import { signup, login } from './routes/user';
-import { getRomanceMusics, } from './routes/spotify';
+import { getRomanceMusics } from './routes/spotify';
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  res.sendFile(path.resolve('client/dist/index.html'));
+    res.sendFile(path.resolve('client/dist/index.html'));
 });
 
 app.use((err, req, res, next) => {
