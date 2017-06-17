@@ -1,0 +1,6 @@
+machine:
+  node:
+    version: 8.0.0
+test:
+  override:
+    - NODE_ENV=test mocha --compilers js:babel-core/register './server/**/*.spec.js'
