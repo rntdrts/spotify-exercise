@@ -1,12 +1,12 @@
 import 'babel-polyfill';
 import { expect } from 'chai';
-import { stub, assert, sandbox } from 'sinon';
+import { stub } from 'sinon';
 
 import bcrypt from 'bcryptjs';
 
 import User from './user';
 
-describe('User', () => {
+describe('User - model', () => {
     let compareStub = {};
 
     beforeEach(() => {
@@ -29,7 +29,9 @@ describe('User', () => {
     it('should check compare passwords', (done) => {
         let user = new User({ email: 'admin@mail.com', password: 'testing'});
 
-        user.comparePwd('pass', () => {});
+        user.comparePwd('pass', (res) => {
+            expect(res).to.be.false;
+        });
 
         expect(compareStub.calledOnce).to.equal(true);
         done();

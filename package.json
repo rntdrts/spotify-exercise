@@ -8,8 +8,8 @@
   "scripts": {
     "test-unit": "NODE_ENV=test mocha --compilers js:babel-core/register './server/**/*.spec.js'",
     "start": "NODE_ENV=development webpack-dev-server",
-    "build": "NODE_ENV=build webpack",
-    "api": "babel-node server/index.js"
+    "api": "babel-node server/index.js",
+    "build": "NODE_ENV=build webpack"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
