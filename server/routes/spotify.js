@@ -89,5 +89,6 @@ getAccessToken({
 export {
     getAccessToken,
     getPlaylistsByCategory,
+    getTracksOnPlaylist,
     getMusics
 }
