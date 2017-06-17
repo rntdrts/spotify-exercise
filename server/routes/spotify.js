@@ -2,7 +2,7 @@ import Spotify from 'machinepack-spotify';
 import rp from 'request-promise';
 import moment from 'moment';
 
-import {SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET } from '../../config/index';
+import { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET } from '../../config/index';
 
 const BASE_URL = 'https://api.spotify.com/v1/',
     PLAYLIST_LIMIT = 1,
@@ -11,24 +11,14 @@ const BASE_URL = 'https://api.spotify.com/v1/',
 let ACCESS_TOKEN = null,
     TOKEN_EXP = moment().add(EXPIRED_TIME, 'm').unix();
 
-const getAccessToken = (callback) => {
+const getAccessToken = (exits) => {
     Spotify.getAccessToken({
         clientId: SPOTIFY_CLIENT_ID,
         clientSecret: SPOTIFY_CLIENT_SECRET,
-    }).exec({
-        error: function (err) {
-
-        },
-        success: function (result) {
-            ACCESS_TOKEN = result;
-            if (callback) {
-                callback();
-            }
-        },
-    });
+    }).exec(exits);
 };
 
-const getPlaylistsByCategory = (category, offset) => {
+const getPlaylistsByCategory = (category = 'romance', offset = 0) => {
     const playListOptions = {
         uri: BASE_URL + 'browse/categories/'+category+'/playlists',
         qs: {
@@ -72,21 +62,32 @@ const romances = (req, res) => {
     }).catch((e) => res.status(401).send({ message: 'Invalid Access' }));
 };
 
-const getRomanceMusics = (req, res) => {
-    if (moment().unix() > TOKEN_EXP ) {
-        getAccessToken(() => {
-            romances(req, res);
-            TOKEN_EXP = moment().add(EXPIRED_TIME, 'm').unix();
+const getMusics = (req, res) => {
+    if (moment().unix() > TOKEN_EXP || !TOKEN_EXP) {
+        getAccessToken({
+            error: (err) => {
+                return res.status(404).json({message: 'Unable to get spotify token.'})
+            },
+            success: (result) => {
+                ACCESS_TOKEN = result;
+                TOKEN_EXP = moment().add(EXPIRED_TIME, 'm').unix();
+                romances(req, res);
+            }
         });
     } else {
         romances(req, res);
     }
 };
 
-getAccessToken();
+getAccessToken({
+    error: (err) => {
+        console.log('[Error] Initial Token:' + err);
+    },
+    success: (token) => ACCESS_TOKEN = token
+});
 
 export {
     getAccessToken,
     getPlaylistsByCategory,
-    getRomanceMusics
+    getMusics
 }

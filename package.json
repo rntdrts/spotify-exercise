@@ -1,7 +1,7 @@
 {
   "name": "spotify-exercise",
   "version": "1.0.0",
-  "description": "A project",
+  "description": "LoveSpot its a web app that lists musics from spotify romance category",
   "author": "Renato Duarte",
   "main": "server/server.js",
   "license": "MIT",
