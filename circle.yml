@@ -1,6 +1,9 @@
 machine:
   node:
     version: 8.0.0
+dependencies:
+  override:
+    - yarn
 test:
   override:
-    - NODE_ENV=test mocha --compilers js:babel-core/register './server/**/*.spec.js'
+    - yarn test-unit
