@@ -1,5 +1,7 @@
 # spotify-exercise
 
+You can find the project [here](http://ec2-34-211-64-117.us-west-2.compute.amazonaws.com/).
+
 ## Requirements
 * Ansible
 * Docker
@@ -20,5 +22,3 @@ ansible-playbook ansible/provisioning.yml
 sudo docker exec -it spotify-example /bin/bash -c 'cd /srv/spotify-example/current && yarn api'
 sudo docker exec -it spotify-example /bin/bash -c 'cd /srv/spotify-example/current && yarn start'
 ```
-
-
