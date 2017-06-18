@@ -1,5 +1,7 @@
 # spotify-exercise
 
+[![CircleCI](https://circleci.com/gh/rntdrts/spotify-exercise/tree/master.svg?style=svg)](https://circleci.com/gh/rntdrts/spotify-exercise/tree/master)
+
 You can find the project [here](http://ec2-34-211-64-117.us-west-2.compute.amazonaws.com/).
 
 ## Requirements
